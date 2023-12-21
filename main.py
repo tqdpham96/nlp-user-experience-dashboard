@@ -8,6 +8,8 @@ from utils import nlp
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from langchain.llms import OpenAI
+import nltk
+nltk.download('punkt')
 
 st.set_page_config(
     page_title="Customer Experience Dashboard",
