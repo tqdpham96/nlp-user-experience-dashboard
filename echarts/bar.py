@@ -44,7 +44,7 @@ def render_basic_bar(xData, value):
             }
         ],
     }
-    st_echarts(options=options, height="500px")
+    st_echarts(options=options, height="400px")
 
 def render_vertical_rating(value, key):
     options = {
