@@ -224,8 +224,8 @@ with tab_aspect:
         posVoiceChart(customerVoices['pos'], customerVoices['posValue'], "Seriousness", 1, "customer_voice_positive")
     with m2:
         st.markdown("<h4 style='text-align: left;'>Negative</h4>", unsafe_allow_html=True)
-        negVoiceChart = ST_DEMOS["Bar: Basic Vertical Bar"]
-        negVoiceChart(customerVoices['neg'], customerVoices['negValue'], "Seriousness", 1, "customer_voice_negative")
+        # negVoiceChart = ST_DEMOS["Bar: Basic Vertical Bar"]
+        # negVoiceChart(customerVoices['neg'], customerVoices['negValue'], "Seriousness", 1, "customer_voice_negative")
 
     st.divider()
     st.markdown("<h3 style='text-align: left;'>Aspect Co-occurrence</h3>", unsafe_allow_html=True)
