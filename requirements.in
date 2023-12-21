@@ -1,0 +1,13 @@
+emoji==2.9.0
+langchain==0.0.352
+matplotlib==3.7.1
+nltk==3.8.1
+numpy==1.23.0
+pandas==1.4.3
+plotly==5.14.1
+streamlit==1.29.0
+streamlit_echarts==0.4.0
+vaderSentiment==3.3.2
+vaderSentiment==3.3.2
+wordcloud==1.9.3
+yake==0.4.8
