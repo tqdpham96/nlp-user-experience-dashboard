@@ -163,7 +163,7 @@ def render_horizontal_stacking(yData, posData, negData, neuData, key):
         options=options, height = '400px', key = key
     )
 
-def render_vertical_bar(data, value, name, max):
+def render_vertical_bar(data, value, name, max, key):
     options = {
         "grid": {
             "left": "8%",
@@ -205,7 +205,7 @@ def render_vertical_bar(data, value, name, max):
         },
     }
     st_echarts(
-        options=options, height='400px'
+        options=options, height='400px', key=key
     )
 
 # Update ST_GAUGE_DEMOS to include specific values for render_gauge
