@@ -88,7 +88,7 @@ def render_vertical_rating(value, key):
         options=options, key=key
     )
 
-def render_horizontal_stacking(yData, posData, negData, neuData):
+def render_horizontal_stacking(yData, posData, negData, neuData, key):
     options = {
         "tooltip": {
             "trigger": "axis",
@@ -160,7 +160,7 @@ def render_horizontal_stacking(yData, posData, negData, neuData):
     }
 
     st_echarts(
-        options=options
+        options=options, height = '400px', key = key
     )
 
 def render_vertical_bar(data, value, name, max):

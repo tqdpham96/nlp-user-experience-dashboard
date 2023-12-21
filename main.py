@@ -154,7 +154,7 @@ with tab_key_factor:
     # Key by sentiment
     entityFreg = utils.getAdjFrequencyData(data[job_filter]['data'])
     scoreChart = ST_DEMOS["Bar: Horizontal Stacked Bar"]
-    scoreChart(entityFreg['words'], entityFreg['pos'], entityFreg['neg'], entityFreg['neu'])   
+    scoreChart(entityFreg['words'], entityFreg['pos'], entityFreg['neg'], entityFreg['neu'], "horizontal_entity")   
     st.divider()
 
     st.markdown("<h3 style='text-align: left;'>Emotional words</h3>", unsafe_allow_html=True)
