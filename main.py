@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from langchain.llms import OpenAI
 import nltk
 nltk.download('punkt')
+nltk.download('stopwords')
 
 st.set_page_config(
     page_title="Customer Experience Dashboard",
