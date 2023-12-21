@@ -93,7 +93,7 @@ def render_horizontal_stacking(yData, posData, negData, neuData, key):
         "tooltip": {
             "trigger": "axis",
             "axisPointer": {
-                "type": "shadow"  # 'shadow' as default; can also be 'line' or 'shadow'
+                "type": "shadow" 
             }
         },
         "legend": {},
