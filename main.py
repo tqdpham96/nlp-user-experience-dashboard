@@ -11,6 +11,7 @@ from langchain.llms import OpenAI
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('wordnet')
 
 st.set_page_config(
     page_title="Customer Experience Dashboard",
