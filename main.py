@@ -35,7 +35,7 @@ background: rgba(0,0,0,0);
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-st.markdown(" <style>iframe{ height: 600px !important } ", unsafe_allow_html=True)
+st.markdown(" <style>iframe{ height: 500px !important } ", unsafe_allow_html=True)
 
 
 def generate_response(input_text):
