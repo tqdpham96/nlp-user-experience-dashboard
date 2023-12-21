@@ -13,8 +13,6 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
-
 st.set_page_config(
     page_title="Customer Experience Dashboard",
     page_icon="✅",
@@ -36,6 +34,9 @@ background: rgba(0,0,0,0);
 """
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
+
+st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
+
 
 def generate_response(input_text):
     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
@@ -217,6 +218,8 @@ with tab_key_factor:
     # Most common positive negative
     # Word cloud
 with tab_aspect:
+    st.markdown(" <style>iframe{ height: 300px !important } ", unsafe_allow_html=True)
+
     st.markdown("<h3 style='text-align: left;'>Customer's Voice</h3>", unsafe_allow_html=True)
     m1, m2 = st.columns(2)
     customerVoices = utils.getThreeWords(data[job_filter]['data'])
