@@ -107,10 +107,14 @@ Enjoy!!!
 
 ### Built With
 
-* [![Python][https://www.python.org/]][Python-url]
+* Python
+* Streamlit
+* Heroku
+* OpenAI
+<!-- * [![Python][https://www.python.org/]][Python-url]
 * [![Streamlit][https://streamlit.io/]][Streamlit-url]
 * [![Heroku][heroku.com]][Heroku-url]
-* [![OpenAI][openai.com]][OpenAI-url]
+* [![OpenAI][openai.com]][OpenAI-url] -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
