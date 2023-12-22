@@ -16,7 +16,7 @@ nltk.download('wordnet')
 
 st.set_page_config(
     page_title="Customer Experience Dashboard",
-    page_icon="✅",
+    page_icon="💌",
     layout="wide",
 )
 page_bg_img = f"""
