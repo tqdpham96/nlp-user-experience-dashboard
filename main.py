@@ -44,7 +44,7 @@ def generate_response(input_text):
     st.info(llm(input_text))
 
 # dashboard title
-st.title("Customer Experience Dashboard")
+st.title("SMARK - Detailed review of pubs in Handforth Wilmslow")
 
 dataNameLists = os.listdir('./data')
 supportedRestaurant = []
