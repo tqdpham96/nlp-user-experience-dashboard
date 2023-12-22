@@ -12,7 +12,7 @@ def render_basic_bar(xData, value):
         "xAxis": {
             "type": "category",
             "data": xData,
-            "name": "Sentiment Score",
+            "name": "Month",
             "nameLocation": "middle",
             "nameGap": 30,
             "nameTextStyle": {
@@ -22,7 +22,7 @@ def render_basic_bar(xData, value):
         },
         "yAxis": {
             "type": "value",
-            "name": "Month",
+            "name": "Sentiment Score",
             "nameLocation": "middle",
             "nameGap": 30,
             "nameTextStyle": {

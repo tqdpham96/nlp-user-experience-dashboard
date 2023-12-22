@@ -54,7 +54,7 @@ for i in dataNameLists:
     
 
 # top-level filters
-job_filter = st.selectbox("Select the Job", supportedRestaurant)
+job_filter = st.selectbox("Select the Pubs in Wilmslow", supportedRestaurant)
 
 # creating a single-element container
 placeholder = st.empty()
@@ -112,8 +112,12 @@ st.divider()
 
 
 with tab_sa:
+    st.markdown("<h3 style='text-align: left;'>Sentiment Analysis</h3>", unsafe_allow_html=True)
+    st.write('This tab provides a comprehensive sentiment analysis of your brand, derived from aggregated customer feedback on Google Map Reviews. Our AI/NLP algorithm assesses each text, assigning negative, positive, or neutral scores. The machine learning model computes a net sentiment score ranging from 1 to 100, where 1 is the lowest and 100 is the highest. A score nearing 100 indicates a predominantly positive sentiment, while a score below 50 suggests a less favorable sentiment based on customer experiences.')
+    st.divider()
+
     m1, m2, m3, m4, m5, m6 = st.columns((2,1,1,1,1,1))
-    m1.markdown("<h3 style='text-align: left;'>Sentiment Summary</h3>", unsafe_allow_html=True)
+    m1.markdown("<h4 style='text-align: left;'>Sentiment Summary</h4>", unsafe_allow_html=True)
     m2.write('')
 
     # Get sentiment summary
@@ -126,41 +130,47 @@ with tab_sa:
     st.divider()
 
     # Chart
-    st.markdown("<h3 style='text-align: left;'>Sentiment Monthly Trend</h3>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: left;'>Sentiment Monthly Trend</h4>", unsafe_allow_html=True)
     dataChart = utils.getSentimentTrendChartData(data[job_filter]['data'])
     sTrend = ST_DEMOS["Line: Stacked Line Chart"]
     sTrend(dataChart['date'], dataChart['pos'], dataChart['neg'], dataChart['neu'])
     st.divider()
     m1, m2 = st.columns((1,2))
     with m1:
-        st.markdown("<h3 style='text-align: left;'>Sentiment Score</h3>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Sentiment Score</h5>", unsafe_allow_html=True)
         # Score: Max = 100, formula = pos/(pos+neu+neg)
         scoreGauge = ST_DEMOS["Gauge: Full Circle Gauge"]
         scoreGauge(int(s_sum['pos']*100 / (s_sum['pos'] + s_sum['neg'] + s_sum['neu'])))
         m11, m22 = st.columns(2)
-        m11.metric(label="Highest", value=max(dataChart['score']))
-        m22.metric(label="Lowest", value=min(dataChart['score']))
+        m11.metric(label="Highest", value=int(max(dataChart['score'])))
+        nonZeroChart = [xx for xx in dataChart['score'] if xx != 0]
+        m22.metric(label="Lowest", value=int(min(nonZeroChart)))
     with m2:
-        st.markdown("<h3 style='text-align: left;'>Sentiment Score Monthly Trend</h3>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Sentiment Score Monthly Trend</h5>", unsafe_allow_html=True)
         scoreChart = ST_DEMOS["Bar: Basic Bar"]
         scoreChart(dataChart['date'], dataChart['score'])
     
     st.divider()
 
 with tab_key_factor:
-    st.markdown("<h3 style='text-align: left;'>Entity by Sentiment</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: left;'>Keywords</h3>", unsafe_allow_html=True)
+    st.write("This tab guarantees the meticulous extraction of all entities from the data source to provide precise insights into customer experiences. These entities encompass names of individuals, locations, brands, competitors, logos, currency, or any other industry-specific factor. The customer experience dashboard displays the extracted entities, their classifications, and the frequency of their appearance in the data. A visually intuitive image-based word cloud on the AI-enabled platform's intelligent sentiment analysis dashboard offers a quick overview of this information.")
+    st.divider()
+
+
+    st.markdown("<h4 style='text-align: left;'>Entity by Sentiment</h4>", unsafe_allow_html=True)
     # Key by sentiment
     entityFreg = utils.getAdjFrequencyData(data[job_filter]['data'])
     scoreChart = ST_DEMOS["Bar: Horizontal Stacked Bar"]
     scoreChart(entityFreg['words'], entityFreg['pos'], entityFreg['neg'], entityFreg['neu'], "horizontal_entity")   
     st.divider()
 
-    st.markdown("<h3 style='text-align: left;'>Emotional words</h3>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: left;'>Emotional words</h4>", unsafe_allow_html=True)
     
     m1, m2 = st.columns(2)
     mostCommon = utils.getMostCommonAdj(data[job_filter]['data'])
     with m1:
-        st.markdown("<h4 style='text-align: left;'>Positive</h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Positive</h5>", unsafe_allow_html=True)
         df = pd.DataFrame()
         posWords = []
         noDuplicate = []
@@ -175,7 +185,7 @@ with tab_key_factor:
         st.dataframe(df, use_container_width=True)
 
     with m2:
-        st.markdown("<h4 style='text-align: left;'>Negative</h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Negative</h5>", unsafe_allow_html=True)
         df = pd.DataFrame()
         negWords = []
         noDuplicate = []
@@ -190,13 +200,13 @@ with tab_key_factor:
         st.dataframe(df, use_container_width=True)
     st.divider()
 
-    st.markdown("<h3 style='text-align: left;'>Word Cloud</h3>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: left;'>Word Cloud</h4>", unsafe_allow_html=True)
     allNouns, allAdjs = utils.allTexts(data[job_filter]['data'])
     allNounsStr = ', '.join(allNouns)
     allAdjsStr = ', '.join(allAdjs)
     m1, m2 = st.columns(2)
     with m1:
-        st.markdown("<h4 style='text-align: left;'>Entity</h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Entity</h5>", unsafe_allow_html=True)
         # Display the generated image:
         figN = plt.figure()
         wordcloud = WordCloud( background_color="white").generate(allNounsStr)
@@ -204,7 +214,7 @@ with tab_key_factor:
         plt.axis("off")
         st.pyplot(figN)
     with m2:
-        st.markdown("<h4 style='text-align: left;'>Emotion</h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Emotion</h5>", unsafe_allow_html=True)
         figA = plt.figure()
         wordcloud = WordCloud( background_color="white").generate(allAdjsStr)
         plt.imshow(wordcloud, interpolation='bilinear')
@@ -214,6 +224,8 @@ with tab_key_factor:
     # Word cloud
 with tab_aspect:
     st.markdown("<h3 style='text-align: left;'>Customer's Voice</h3>", unsafe_allow_html=True)
+    st.write('This tab unveils the customer voice, revealing their preferences and concerns about your pub. A reliable sentiment analysis model extracts pertinent topics and aspects from the data, emphasizing concurrent customer emotions—a phenomenon known as aspect-emotion co-occurrence. The customer experience dashboard displays the emotion-aspect co-occurrence, providing insights into the predominant emotions expressed in relation to specific aspects.')
+    st.divider()
     m1, m2 = st.columns(2)
     customerVoices = utils.getThreeWords(data[job_filter]['data'])
     with m1:
@@ -226,7 +238,7 @@ with tab_aspect:
         negVoiceChart(customerVoices['neg'], customerVoices['negValue'], "Seriousness", 1, "customer_voice_negative")
 
     st.divider()
-    st.markdown("<h3 style='text-align: left;'>Aspect Co-occurrence</h3>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: left;'>Aspect Co-occurrence</h4>", unsafe_allow_html=True)
     heatmapAspectCooccurrence, vocab = utils.process_co_occurrence_matrix(data[job_filter]['data'])
     figHeatmapAspect = px.imshow(heatmapAspectCooccurrence, text_auto=True, labels=dict(x="Aspect", y="Aspect", color="Seriousness"),
                 x=vocab,
@@ -234,7 +246,7 @@ with tab_aspect:
     st.plotly_chart(figHeatmapAspect, theme="streamlit", use_container_width=True)
 
     st.divider()
-    st.markdown("<h3 style='text-align: left;'>Emotion Aspect Co-occurrence</h3>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: left;'>Emotion Aspect Co-occurrence</h4>", unsafe_allow_html=True)
     heatmapEmotionCooccurrence, hX, hY = utils.getEmotionAspect(data[job_filter]['data'])
     figHeatmapAspect = px.imshow(heatmapEmotionCooccurrence, text_auto=True, labels=dict(x="Aspect", y="Emotion", color="Seriousness"),
                 x=hX,
@@ -243,6 +255,7 @@ with tab_aspect:
 
 with tab_favourite:
     st.markdown("<h3 style='text-align: left;'>Your Favourite/Hated Customers</h3>", unsafe_allow_html=True)
+    st.write('As the name suggests, this tab assists in summarizing your most ardent supporters and your staunchest critics. This information empowers you to make informed decisions on whether to engage with them for further actions.')
     st.divider()
     dataFavourite = utils.getMostSentences(data[job_filter]['data'])
     st.markdown("<h4 style='text-align: left;'>Favourite</h4>", unsafe_allow_html=True)
@@ -396,3 +409,13 @@ with tab_contact:
         if submitted:
             st.write('Done, thank you!')
             st.balloons()
+
+css = '''
+<style>
+    .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+    font-size:1.2rem;
+    }
+</style>
+'''
+
+st.markdown(css, unsafe_allow_html=True)
