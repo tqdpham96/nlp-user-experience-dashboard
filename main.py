@@ -401,7 +401,7 @@ with tab_ai:
 
 
 with tab_contact:
-    st.markdown("<h5 style='text-align: center;'>Contact form 💌</h5>", unsafe_allow_html=True)
+    st.markdown("<h5 style='text-align: center;'>Contact form 💌 (Xuan - 07305347712)</h5>", unsafe_allow_html=True)
     with st.form('my_form1'):
         text1 = st.text_area('Your Email:')
         text2 = st.text_area('Your Message:')
