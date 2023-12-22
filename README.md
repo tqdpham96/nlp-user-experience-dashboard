@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/tqdpham96/nlp-user-experience-dashboard">
-    <img src="images/logo.jpeg" alt="Logo" width="80" height="80">
+    <img src="images/logo.jpeg" alt="Logo" width="1200" height="400">
   </a>
 
 <h3 align="center">Customer Experience Dashboard</h3>
