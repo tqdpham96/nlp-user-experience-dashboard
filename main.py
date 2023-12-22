@@ -130,20 +130,13 @@ with tab_sa:
     dataChart = utils.getSentimentTrendChartData(data[job_filter]['data'])
     sTrend = ST_DEMOS["Line: Stacked Line Chart"]
     sTrend(dataChart['date'], dataChart['pos'], dataChart['neg'], dataChart['neu'])
-
     st.divider()
-
     m1, m2 = st.columns((1,2))
     with m1:
         st.markdown("<h3 style='text-align: left;'>Sentiment Score</h3>", unsafe_allow_html=True)
         # Score: Max = 100, formula = pos/(pos+neu+neg)
-        totalScore = 0
-        if (dataChart['neg'][-1] == 0 and dataChart['neu'][-1] == 0):
-            totalScore = 100
-        else:
-            totalScore = dataChart['pos'][-1]*100/ (dataChart['pos'][-1]+dataChart['neg'][-1] + dataChart['neu'][-1])
         scoreGauge = ST_DEMOS["Gauge: Full Circle Gauge"]
-        scoreGauge(totalScore)
+        scoreGauge(int(s_sum['pos']*100 / (s_sum['pos'] + s_sum['neg'] + s_sum['neu'])))
         m11, m22 = st.columns(2)
         m11.metric(label="Highest", value=max(dataChart['score']))
         m22.metric(label="Lowest", value=min(dataChart['score']))

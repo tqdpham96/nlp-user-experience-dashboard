@@ -63,7 +63,7 @@ def getSentimentTrendChartData(data):
         neg.append(i[1]['negative'])
         neu.append(i[1]['neutral'])
         score.append(i[1]['positive']*100/(i[1]['negative']+i[1]['positive']+i[1]['neutral']))
-
+    
     return {
         'date': date,
         'pos': pos,
