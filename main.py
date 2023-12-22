@@ -2,6 +2,7 @@ import pandas as pd  # read csv, df manipulation
 import plotly.express as px  # interactive charts
 import streamlit as st  # 🎈 data web app development
 import json
+import os
 from echarts import ST_DEMOS
 from utils import utils
 from utils import nlp
@@ -45,11 +46,12 @@ def generate_response(input_text):
 # dashboard title
 st.title("Customer Experience Dashboard")
 
-supportedRestaurant = [
-    'Anthology', 'Bulls Head', 'Coach & Four', 'King William', 'Kings Arms, Wilmslow', 'Miller & Carter Wilmslow',
-    'Revolution Wilmslow', 'The Carters Arms', 'The Farmers Arms', 'The Grove', 'The Honey Bee', 'The Mucky Pup',
-    'The Railway, Handforth', 'The Ship Styal', 'Unicorn', 'Wilmslow Tavern'
-]
+dataNameLists = os.listdir('./data')
+supportedRestaurant = []
+for i in dataNameLists:
+    if (".json" in i):
+        supportedRestaurant.append(i[0:-5])
+    
 
 # top-level filters
 job_filter = st.selectbox("Select the Job", supportedRestaurant)
