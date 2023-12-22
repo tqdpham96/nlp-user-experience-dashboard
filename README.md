@@ -80,7 +80,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://thinh-pham-nlp-user-experience-dashboard-gubxa5n2vtd9gmodyzsrvn.streamlit.app/)
+[![Product Name Screen Shot][product-screenshot]](https://smark-pub-review.streamlit.app/)
 
 Hello everyone! I wanted to share a little project I worked on over the Christmas break while in Europe. With everything settled down, I was looking for something enjoyable to lift my spirits. While randomly surfing the internet, I stumbled upon some fantastic resources and libraries related to Generative AI and NLP. Intrigued, I decided to test the capabilities of these libraries to gauge how close we are to state-of-the-art solutions.
 
